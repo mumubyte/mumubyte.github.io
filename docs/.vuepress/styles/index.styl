@@ -1,0 +1,125 @@
+
+// 评论区颜色重置
+.gt-container
+  .gt-ico-tip
+    &::after
+      content: '。( Win + . ) 或 ( ⌃ + ⌘ + ␣ ) 打开表情'
+      color: #999
+      font-size: .8rem
+  .gt-meta
+    border-color var(--borderColor)!important
+  .gt-comments-null
+    color var(--textColor)
+    opacity .5
+  .gt-header-textarea
+    color var(--textColor)
+    background rgba(180,180,180,0.1)!important
+  .gt-btn
+    border-color $accentColor!important
+    background-color $accentColor!important
+  .gt-btn-preview
+    background-color rgba(255,255,255,0)!important
+    color $accentColor!important
+  a
+    color $accentColor!important
+  .gt-svg svg
+    fill $accentColor!important
+  .gt-comment-content,.gt-comment-admin .gt-comment-content
+    background-color rgba(150,150,150,0.1)!important
+    &:hover
+      box-shadow 0 0 25px rgba(150,150,150,.5)!important
+    .gt-comment-body
+      color var(--textColor)!important
+
+
+// qq徽章
+.qq
+  position: relative;
+.qq::after
+  content: "可撩";
+  background: $accentColor;
+  color:#fff;
+  padding: 0 5px;
+  border-radius: 10px;
+  font-size:12px;
+  position: absolute;
+  top: -4px;
+  right: -35px;
+  transform:scale(0.85);
+
+// demo模块图标颜色
+body .vuepress-plugin-demo-block__wrapper
+  &,.vuepress-plugin-demo-block__display
+    border-color rgba(160,160,160,.3)
+  .vuepress-plugin-demo-block__footer:hover
+    .vuepress-plugin-demo-block__expand::before
+      border-top-color: $accentColor !important;
+      border-bottom-color: $accentColor !important;
+    svg
+      fill: $accentColor !important;
+
+// 全文搜索框
+.suggestions
+  overflow: auto
+  max-height: calc(100vh - 6rem)
+  @media (max-width: 719px) {
+    width: 90vw;
+    min-width: 90vw!important;
+    margin-right: -20px;
+  }
+  .highlight
+    color: $accentColor
+    font-weight: bold
+
+// 卡片半透明背景（覆盖主题默认的 var(--mainBg) 不透明背景）
+// 对应变量在 palette.styl 中定义，想调透明度改那里即可。
+// 选择器说明：多带一层 .theme-container 是为了提高权重——用户样式编译后的位置并不总在所有主题样式之后
+//            （主题里 .theme-vdoing-wrapper 那条就排在用户样式后面），只靠加载顺序不可靠。
+.theme-container .card-box // 卡片
+  background var(--mainBgtransparent)
+
+
+// ============ 正文内容框：极淡网格 + 半透明底 ============
+// 网格挂在 .theme-vdoing-wrapper 上，也就是页面里的
+//   <main class="page"> > <div class="theme-vdoing-wrapper">
+// 把网格做成"内容框"的纹理，而不是铺满整个页面——与首页 banner 的做法一致（banner 的网格也只铺在 banner 那个框上）。
+// 色值和尺寸与首页 banner 完全同一套：--linesColor + 20px。
+//
+// 为什么不直接用主题自带的 contentBgStyle？——主题内置了它（Page.vue 的 bg-style-1~6，frontmatter 填 1~6），
+// 但那条规则在产物里位于 112975，而 .theme-vdoing-wrapper:not(.footer){background:var(--mainBg)} 这条简写在 118751：
+// 两者权重相同、后者靠后，background-image 被简写重置成了 none，所以直接填 frontmatter 是看不到网格的。
+// 这里用更高权重的规则自己画，效果等价于 bg-style-1。
+//
+// 注意用 background-color / background-image 两个长写属性，不能用 background 简写，否则会把网格图一起重置掉。
+// --linesColor 由 palette.styl 的 .theme-mode-* 提供（浅色 rgba(50,0,0,.05) / 深色 rgba(125,125,125,.05)），
+// 深浅色模式自动适配。想调透明度改 palette.styl 里的 --mainBgtransparent。
+.theme-container .theme-vdoing-wrapper:not(.footer)
+  background-color var(--mainBgtransparent)
+  background-image linear-gradient(90deg, var(--linesColor) 3%, transparent 3%), linear-gradient(0deg, var(--linesColor) 3%, transparent 3%)
+  background-position center center
+  background-size 20px 20px
+
+// 归档页要单独再提一级权重。
+// 原因：主题为归档页写了 .archives-page .theme-vdoing-wrapper:not(.footer){background:var(--mainBg);box-shadow:...}
+// （产物 118737），权重和我们上面那条一样是 (0,3,0)，但它排在后面，所以归档页会被它变回不透明、网格也没了。
+// 这里多加一层 .archives-page 变成 (0,4,0) 就能赢；box-shadow 不动，归档页的卡片阴影保留。
+.theme-container .archives-page .theme-vdoing-wrapper:not(.footer)
+  background-color var(--mainBgtransparent)
+  background-image linear-gradient(90deg, var(--linesColor) 3%, transparent 3%), linear-gradient(0deg, var(--linesColor) 3%, transparent 3%)
+  background-position center center
+  background-size 20px 20px
+
+// 归档页吸顶的年份栏：半透明 + 毛玻璃，避免滚动内容从底下直接透出来
+// （主题那条 .archives-page ... li.year 同样排在后面，所以这里也要用 (0,4,1) 才压得住）
+.theme-container .theme-vdoing-wrapper li.year,
+.theme-container .archives-page .theme-vdoing-wrapper li.year
+  background var(--mainBgtransparent)
+  backdrop-filter saturate(200%) blur(20px)
+
+// ============ 隐藏导航栏的站点标题文字 ============
+// 导航栏模板是：<img class="logo"> + <span class="site-name">{{ 站点标题 }}</span>
+// 而 logo 现在是一个写着 "mumubyte" 的字标，后面再跟一段 "mumubyte的博客" 就重复了。
+// 主题那条 .navbar .site-name 权重是 (0,2,0)，这里多加一层 .home-link 提到 (0,3,0) 稳压它。
+// （主题还给 .site-name 写了手机端的 display:none，被这条覆盖后各尺寸下都不显示——正是想要的。）
+.navbar .home-link .site-name
+  display none

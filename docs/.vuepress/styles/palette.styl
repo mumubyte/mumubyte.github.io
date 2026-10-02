@@ -1,0 +1,89 @@
+//***vdoing主题-样式变量（你可以修改这些变量值以覆盖主题使用的样式变量）***//
+
+// 以下注释的变量仅供参考，主题使用的最新变量请查看：https://github.com/xugaoyi/vuepress-theme-vdoing/blob/master/theme-vdoing/styles/palette.styl
+
+// // 颜色
+
+// $bannerTextColor = #fff // 首页banner区(博客标题)文本颜色
+// $accentColor = #11A8CD // 主题色
+// $activeColor = #ff5722
+// $arrowBgColor = #ccc
+
+// // 布局
+// $navbarHeight = 3.6rem
+// $sidebarWidth = 18rem
+// $contentWidth = 860px
+// $homePageWidth = 1100px
+// $rightMenuWidth = 230px // 右侧菜单
+
+// // 代码块
+// $lineNumbersWrapperWidth = 2.5rem
+
+// // 浅色模式
+// .theme-mode-light
+//   --bodyBg: #f4f4f4
+//   --mainBg: rgba(255,255,255,1)
+//   --sidebarBg: rgba(255,255,255,.8)
+//   --blurBg: rgba(255,255,255,.9)
+//   --textColor: #004050
+//   --textLightenColor: #0085AD
+//   --borderColor: rgba(0,0,0,.15)
+//   // 代码块浅色主题
+//   --codeBg: #f6f6f6
+//   --codeColor: #525252
+//   codeThemeLight()
+//   // // 代码块深色主题
+//   // --codeBg: #252526
+//   // --codeColor: #fff
+//   // codeThemeDark()
+
+// // 深色模式
+// .theme-mode-dark
+//   --bodyBg: rgb(39,39,43)
+//   --mainBg: rgba(30,30,34,1)
+//   --sidebarBg: rgba(30,30,34,.8)
+//   --blurBg: rgba(30,30,34,.8)
+//   --textColor: rgb(140,140,150)
+//   --textLightenColor: #0085AD
+//   --borderColor: #2C2C3A
+//   --codeBg: #252526
+//   --codeColor: #fff
+//   codeThemeDark()
+
+// // 阅读模式
+// .theme-mode-read
+//   --bodyBg: rgb(240,240,208)
+//   --mainBg: rgba(245,245,213,1)
+//   --sidebarBg: rgba(245,245,213,.8)
+//   --blurBg: rgba(245,245,213,.9)
+//   --textColor: #004050
+//   --textLightenColor: #0085AD
+//   --borderColor: rgba(0,0,0,.15)
+//   --codeBg: #282c34
+//   --codeColor: #fff
+//   codeThemeDark()
+
+
+//***自定义变量***//
+
+// 半透明内容底色（--mainBgtransparent）
+// 说明：这是旧版主题内置、新版已移除的变量，用于让卡片/正文容器透出底下的网格或背景图。
+// 透明度可自行调整（.3 = 30% 不透明，值越小越透）
+//
+// 网格线颜色（--linesColor）
+// 说明：主题本来只在 .theme-vdoing-wrapper 上定义这个变量（见 Page.vue 的 bg-style-1~6），
+//      这里补一份到 .theme-mode-* 上只是为了让取值集中在这一个文件里好改。
+//      取值与主题保持一致：浅色 rgba(50,0,0,.05)（= 首页 banner 网格同色），深色 rgba(125,125,125,.05)。
+//      用它的地方：.vuepress/styles/index.styl 里 .theme-vdoing-wrapper 的网格。
+
+.theme-mode-light
+  --mainBgtransparent: rgba(255,255,255,.3)
+  --linesColor: rgba(50, 0, 0, .05)
+
+.theme-mode-dark
+  --mainBgtransparent: rgba(30,30,34,.3)
+  --linesColor: rgba(125, 125, 125, .05)
+
+.theme-mode-read
+  --mainBgtransparent: rgba(245,245,213,.3)
+  --linesColor: rgba(50, 0, 0, .05)
