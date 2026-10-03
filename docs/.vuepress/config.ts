@@ -33,7 +33,12 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
       //      items: [{ text: '子分类', link: '/pages/xxxxxx/' }]  （再套一层 items 就是三级菜单）
       { text: '硬件', link: '/hardware/' },
       { text: '存储技术', link: '/storage/' },
-      { text: '系统与网络', link: '/network/' },
+      {
+        text: '系统与网络',
+        link: '/network/',
+        // 子分类：子目录页的 permalink 见 docs/00.目录页/05.Windows系统.md
+        items: [{ text: 'Windows系统', link: '/windows/' }],
+      },
       // 兜底分类，对应 docs/04.更多/（目录页 permalink 见 00.目录页/04.更多.md）。
       // 原来的二级下拉项都指向已删除的演示文章，所以清掉了；以后有子分类了按上面的格式补 items。
       { text: '更多', link: '/more/' },
