@@ -11,6 +11,12 @@ on:
 env: # 设置环境变量
   TZ: Asia/Shanghai # 时区（设置时区可使页面中的`最近更新时间`使用该时区时间）
 
+# GITHUB_TOKEN 默认是只读的（2023-02 之后创建的仓库默认 Read repository contents），
+# 而下面的步骤要用它把构建产物推送到 gh-pages 分支，所以必须显式声明写权限，
+# 否则会在最后一步 push 时报 403：Permission to ... denied to github-actions[bot]
+permissions:
+  contents: write
+
 jobs:
   build: # 自定义名称
     runs-on: ubuntu-latest # 运行在虚拟机环境ubuntu-latest
