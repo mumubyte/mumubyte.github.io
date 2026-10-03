@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="存储技术">
+  <!-- 硬盘 · 极简线条电路风 -->
+  <g fill="none" stroke="#11A8CD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 盘体 -->
+    <rect x="22" y="36" width="116" height="88" rx="12"/>
+    <!-- 盘片 -->
+    <circle cx="64" cy="80" r="24"/>
+    <circle cx="64" cy="80" r="7"/>
+    <!-- 磁头臂 -->
+    <path d="M110 56 V74 L88 88"/>
+    <!-- 底部接口针脚 -->
+    <path d="M40 124 V136"/>
+    <path d="M64 124 V136"/>
+    <path d="M88 124 V136"/>
+    <path d="M112 124 V136"/>
+  </g>
+  <g fill="#11A8CD">
+    <circle cx="110" cy="56" r="4.5"/>
+  </g>
+</svg>

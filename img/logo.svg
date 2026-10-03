@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 100" width="470" height="100" role="img" aria-label="mumubyte">
+  <!-- 极简线条电路风：透明底 + 单色细线，适配浅色/深色模式 -->
+  <!-- 这是字标（不是方形图标），所以 viewBox 是宽的：470 x 100。
+       主题给 .logo 定的是 height:2.2rem、宽度自适应，所以渲染出来约 10.3rem 宽 x 2.2rem 高，
+       字号约 20.4px，和旁边站点标题的 1.3rem(20.8px) 基本齐平。
+       viewBox 宽度是实测出来的，不是估的：字号 58 时 "mumubyte" 在 Segoe UI/Arial 下实际宽 387~424
+       单位（用 GDI+ MeasureString 量的），所以留到 470 才不会被裁掉——字体换机器会变，别往小改。
+       因为字标已经写全了昵称，导航栏那段站点标题文字要隐藏（见 styles/index.styl）。 -->
+  <text x="235" y="60" text-anchor="middle"
+        font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, Helvetica, sans-serif"
+        font-size="58" font-weight="600" fill="#11A8CD" letter-spacing="-1.5">mumubyte</text>
+  <g fill="none" stroke="#11A8CD" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 80 H170 V91 H300 V80 H400"/>
+  </g>
+  <g fill="#11A8CD">
+    <circle cx="70" cy="80" r="4"/>
+    <circle cx="400" cy="80" r="4"/>
+    <circle cx="235" cy="91" r="4"/>
+  </g>
+</svg>

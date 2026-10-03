@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="系统与网络">
+  <!-- 网络拓扑 · 极简线条电路风 -->
+  <g fill="none" stroke="#11A8CD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 连线 -->
+    <path d="M80 52 V40"/>
+    <path d="M64 100 L44 112"/>
+    <path d="M96 100 L126 112"/>
+    <!-- 中心节点 -->
+    <rect x="56" y="52" width="48" height="48" rx="10"/>
+    <!-- 上节点 -->
+    <rect x="64" y="16" width="32" height="24" rx="7"/>
+    <!-- 左下节点 -->
+    <rect x="18" y="112" width="32" height="26" rx="7"/>
+    <!-- 右下节点 -->
+    <rect x="110" y="112" width="32" height="26" rx="7"/>
+  </g>
+  <g fill="#11A8CD">
+    <circle cx="80" cy="76" r="7"/>
+  </g>
+</svg>

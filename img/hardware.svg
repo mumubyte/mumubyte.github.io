@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="硬件">
+  <!-- 芯片 · 极简线条电路风 -->
+  <g fill="none" stroke="#11A8CD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="46" y="46" width="68" height="68" rx="12"/>
+    <rect x="68" y="68" width="24" height="24" rx="5"/>
+    <path d="M62 46 V30"/>
+    <path d="M80 46 V30"/>
+    <path d="M98 46 V30"/>
+    <path d="M62 114 V130"/>
+    <path d="M80 114 V130"/>
+    <path d="M98 114 V130"/>
+    <path d="M46 62 H30"/>
+    <path d="M46 80 H30"/>
+    <path d="M46 98 H30"/>
+    <path d="M114 62 H130"/>
+    <path d="M114 80 H130"/>
+    <path d="M114 98 H130"/>
+  </g>
+</svg>

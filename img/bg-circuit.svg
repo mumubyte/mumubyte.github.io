@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="电路纹理背景">
+  <!-- 极简线条电路纹理（透明底，配合 bodyBgImgOpacity 使用） -->
+  <defs>
+    <pattern id="pcb" width="160" height="160" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#11A8CD" stroke-opacity="0.16" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0 48 H32 V0"/>
+        <path d="M160 48 H128 V0"/>
+        <path d="M0 112 H32 V160"/>
+        <path d="M160 112 H128 V160"/>
+      </g>
+      <g fill="#11A8CD" fill-opacity="0.16">
+        <circle cx="32" cy="48" r="4"/>
+        <circle cx="128" cy="48" r="4"/>
+        <circle cx="32" cy="112" r="4"/>
+        <circle cx="128" cy="112" r="4"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="800" height="800" fill="url(#pcb)"/>
+</svg>

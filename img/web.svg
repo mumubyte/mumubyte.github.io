@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="前端">
+  <!-- 浏览器窗口 · 极简线条电路风 -->
+  <g fill="none" stroke="#11A8CD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="24" y="30" width="112" height="86" rx="10"/>
+    <path d="M24 52 H136"/>
+    <path d="M42 74 H78"/>
+    <path d="M42 90 H110"/>
+    <path d="M42 106 H66"/>
+    <path d="M80 116 V128"/>
+    <path d="M58 132 H102"/>
+  </g>
+  <g fill="#11A8CD">
+    <circle cx="38" cy="41" r="3.5"/>
+    <circle cx="50" cy="41" r="3.5"/>
+    <circle cx="62" cy="41" r="3.5"/>
+  </g>
+</svg>
