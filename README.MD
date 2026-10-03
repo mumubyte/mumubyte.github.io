@@ -25,13 +25,14 @@
 │   │   ├── public/img/       # 静态资源（logo、favicon、分类配图）
 │   │   └── styles/           # palette.styl 变量 / index.styl 样式覆盖
 │   ├── 00.目录页/            # 各分类的目录页（Catalogue 组件），permalink 定义在此
+│   ├── 03.系统与网络/        # 文章内容，按分类分文件夹，可再分子目录
 │   ├── 05.关于/              # 关于页
 │   ├── @pages/               # 归档 / 分类 / 标签页
 │   └── index.md              # 首页（home: true，features 配三个入口）
-├── utils/                    # 辅助脚本（frontmatter 批处理、百度推送等）
+├── utils/                    # 辅助脚本（跨平台部署、frontmatter 批处理、百度推送等）
 ├── vdoing/                   # 主题源码本地副本，配合 npm run publish 发布主题用
 ├── .github/workflows/ci.yml  # 推送到 main 后自动构建并部署
-├── deploy.sh                 # 本地手动部署脚本
+├── deploy.sh                 # 手动部署脚本（bash 环境，等价于 utils/deploy.js）
 └── vercel.json               # Vercel 部署时的静态资源缓存头
 ```
 
@@ -49,16 +50,18 @@ npm run build        # 构建到 docs/.vuepress/dist
 
 ## 写文章
 
-文章放在与分类对应的文件夹里（目前内容文件夹尚未创建，新建第一篇时一并建好即可）：
+文章放在与分类对应的文件夹里，分类下还可以再分子目录（如 `01.Windows系统`，会渲染成侧边栏里的可折叠分组）：
 
 ```
 docs/01.硬件/01.某某主板测试.md
 docs/02.存储技术/01.ZFS 池规划.md
-docs/03.系统与网络/01.SMB 多通道.md
+docs/03.系统与网络/01.Windows系统/01.Windows11创建共享文件夹.md
 docs/04.更多/01.随笔.md
 ```
 
-**文件夹前缀数字决定顺序**（`01.` 在最前），侧边栏由主题的 `structuring` 模式按目录结构自动生成，所以命名和层级要规范。
+**文件夹和文件都必须带 `数字.` 前缀**（`01.` 在最前），主题靠这个序号排序——没有前缀的名字会被判为「序号出错」直接跳过，既不进侧边栏也不进目录页。侧边栏由 `structuring` 模式按目录结构自动生成，命名和层级要规范。
+
+> 目前只有 `03.系统与网络` 建好了，其余分类的内容文件夹需要时再建。
 
 文章头部 frontmatter 参考：
 
@@ -79,7 +82,35 @@ author:
 
 `author` 一般不用手写：`config.ts` 里的 `extendFrontmatter` 会在缺失时自动补上。
 
-> 新增一个**顶级分类**时需要三步：建内容文件夹 → 在 `docs/00.目录页/` 加一个目录页（`pageComponent: Catalogue`，`data.path` 指向该文件夹）→ 在 `config.ts` 的 `nav` 里加导航项，`link` 填目录页的 `permalink`。
+### 图片放哪里
+
+统一放在 `docs/.vuepress/public/` 下，用 `/` 开头的绝对路径引用：
+
+```
+docs/.vuepress/public/img/sharing/win11-share-01.png
+```
+
+```markdown
+![共享设置界面](/img/sharing/win11-share-01.png)
+```
+
+logo、favicon、分类图标也都在这套目录下（`public/img/`）。建议按文章再建子目录，避免全部堆在 `img/` 里。
+
+**不要**把图片放进 `docs/` 内的内容目录（与文章同级、或另建 `images/` 子目录都不行）。侧边栏生成器会扫描内容目录里的一切，非 md 文件一律抛警告：
+
+| 图片放法 | 构建警告 |
+| --- | --- |
+| `01.Windows系统/images/x.png` | `该文件 "...\images" 序号出错，请填写正确的序号` |
+| `01.Windows系统/x.png` | `该文件 "...\x.png" 序号出错` |
+| `01.Windows系统/01.x.png` | `该文件 "...\01.x.png" 非.md格式文件，不支持该文件类型` |
+
+即使加上序号，也只是从「序号出错」换成「非 md 格式」，主题没有提供忽略配置。警告不影响图片显示（相对路径引用同样能渲染），但每次构建都会刷屏，所以还是走 `public/`。该目录被生成器排除，零警告。
+
+> 站点 `base` 为默认的 `/`，`/img/xxx.png` 可直接使用。若将来部署到子路径（如 `https://foo.github.io/bar/`），绝对路径的图片需改用 `$withBase` 包裹，否则会 404。
+
+### 新增顶级分类
+
+需要三步：建内容文件夹 → 在 `docs/00.目录页/` 加一个目录页（`pageComponent: Catalogue`，`data.path` 指向该文件夹）→ 在 `config.ts` 的 `nav` 里加导航项，`link` 填目录页的 `permalink`。
 
 ## 部署
 
